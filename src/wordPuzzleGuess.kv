@@ -1,0 +1,123 @@
+#:import Window kivy.core.window.Window
+
+<MyScreenManager>:
+    HomeScreen:
+    HowToPlayScreen:
+    GameScreen:
+    ResultScreen:
+
+<HomeScreen>:
+    name: "Home"
+    BoxLayout:
+        orientation:'vertical'
+        size_hint_y: 0.3
+        size_hint_x: 0.3
+        pos_hint: {"center_x": 0.5, "center_y": 0.5}
+        Label:
+            text:'WordPuzzleGuess'
+            font_name: "font/ipaexg.ttf"
+        Button:
+            text: 'スタート'
+            font_name: "font/ipaexg.ttf"
+            on_press: root.manager.current = "Game"
+        Button:
+            text: 'あそびかた'
+            font_name: "font/ipaexg.ttf"
+            on_press: root.manager.current = "HowToPlay"
+
+<HowToPlayScreen>:
+    name: "HowToPlay"
+    size_hint_y: 0.3
+    size_hint_x: 0.3
+    pos_hint: {"center_x": 0.5, "center_y": 0.5}
+    BoxLayout:
+        orientation: 'vertical'
+        Label:
+            text: 'ここにゲームのルールをかくよ！'
+            font_name: "font/ipaexg.ttf"
+        Button:
+            text: '最初の画面に戻る'
+            font_name: "font/ipaexg.ttf"
+            on_press: root.manager.current = 'Home'
+
+<KanaButton@Button>:
+    size_hint: 0.5, 0.5
+    font_name: "font/ipaexg.ttf"
+
+<InputLabel@Label>:
+    # size_hint_y: 0.1
+    # size_hint_x: 0.1
+    # size_hint: (1, None)
+    # height: 50
+    # canvas.before:
+    #     Color:
+    #         rgba: 1, 0, 0, 1  # 枠線の色を黒に設定
+    #     Line:
+    #         rectangle: self.x, self.y-5, self.width-5, self.height-5  # 枠線を描画
+    #         width: 1.5  # 枠線の太さ
+    canvas.before:
+        Color:
+            rgba: 0.322, 0.075, 0.439 ,1
+        Rectangle:
+            size: self.size
+            pos: self.pos
+    text: ""
+    font_size: 32
+    font_name: "font/ipaexg.ttf"
+
+
+<GameScreen>:
+    name: "Game"
+    # canvas.before:
+    #     Color:
+    #         rgba: 1, 1, 1, 1  # 赤色の背景
+    #     Rectangle:
+    #         size: self.size
+    #         pos: self.pos
+    ScrollView:
+        id: scrollview
+        # size_hint: (1, None)
+        size_hint_y: 0.5
+        size_hint_x: 0.5
+        pos_hint: {"center_x": 0.5, "center_y": 0.7}
+        do_scroll_x: False
+        # size: (Window.width, Window.height)
+        canvas.before:
+            Color:
+                rgba: 1, 1, 1, 1  # 枠線の色を黒に設定
+            Line:
+                rectangle: self.x, self.y, self.width, self.height  # 枠線を描画
+                width: 1  # 枠線の太さz
+
+    Label:
+        id: errorlabel
+        pos_hint: {"center_x": 0.5, "center_y": 0.5}
+        text:''
+        font_name: "font/ipaexg.ttf"
+        font_size: 48
+        opacity: 0
+        canvas.before:
+            Color:
+                rgba: 1, 0, 0, 1
+            Rectangle:
+                size: self.size
+                pos: self.pos
+
+<ResultScreen>:
+    name: "Result"
+    BoxLayout:
+        orientation:'vertical'
+        size_hint_y: 0.3
+        size_hint_x: 0.3
+        pos_hint: {"center_x": 0.5, "center_y": 0.5}
+        Label:
+            text:'クリア'
+            font_name: "font/ipaexg.ttf"
+        Button:
+            text: 'もう一度遊ぶ'
+            font_name: "font/ipaexg.ttf"
+            on_press: root.manager.current = "Game"
+        Button:
+            text: 'ホームへ戻る'
+            font_name: "font/ipaexg.ttf"
+            on_press: root.manager.current = "Home"

@@ -1,6 +1,9 @@
 
 from checkInput import checkInput
 from generateWord import GenerateRandomHiragana
+from log_collection import LogCollection
+
+# log = LogCollection.LogCollection(__name__)
 
 class CharInfo:
     def __init__(self, char, color = "\033[0m"):
@@ -22,7 +25,9 @@ def consoleMode():
         inputWord = input("文字を入力してね\n")
 
         # 文字数をチェック
-        if not checkInput(inputWord):
+        ret, message = checkInput(inputWord)
+        if not ret:
+            print(message)
             continue
             
         # 文字の正解チェック
@@ -82,7 +87,6 @@ def consoleMode():
 
 def main():
     consoleMode()
-
 
 # メイン関数
 if __name__ == '__main__':

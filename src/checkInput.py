@@ -30,14 +30,12 @@ hiragana = ["あ", "い", "う", "え", "お",
 def checkInput(inputWord):
     # 文字数をチェック
     if len(inputWord) != 5:
-        print("入力文字数は5文字です")
-        return False
+        return False, "入力文字数は5文字です"
 
     # ひらがな以外の文字が含まれていないかチェック
     for char in inputWord:
         if not char in hiragana:
             # ひらがな以外
-            print("ひらがな以外の文字が含まれています")
-            return False
+            return False, "ひらがな以外の文字が含まれています"
 
-    return True
+    return True, ""
